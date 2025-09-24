@@ -1,0 +1,11 @@
+.btn-outline-danger {
+  color: #003666;
+  border: 1px solid #003666;
+  box-shadow: 1px 1px 3px #003666;
+}
+
+.btn-outline-danger:hover {
+  box-shadow: 2px 4px 6px #002c53;
+  background-color: #003666;
+  color: #fff;
+}
