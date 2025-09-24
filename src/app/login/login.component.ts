@@ -1,29 +1,22 @@
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    FormsModule,
-  ],
-  templateUrl: './login.html',
-  styleUrl: './login.css',
+  imports: [CommonModule,MatFormFieldModule,MatInputModule, MatIconModule,MatButtonModule, FormsModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class Login {
+export class LoginComponent {
   nome = '';
   senha = '';
-  dataAtual = new DataTransfer();
+  dataAtual = new Date();
 
   constructor(private router: Router) {}
 
@@ -32,10 +25,9 @@ export class Login {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }
-
   login() {
     if (this.nome !== 'admin' || this.senha !== '123456') {
-      alert('Nome ou senha inválidos');
+      alert('Nome ou senha Invalidos');
     } else {
       this.router.navigate(['/home']);
     }

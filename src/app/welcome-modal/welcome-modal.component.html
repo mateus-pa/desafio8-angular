@@ -1,0 +1,24 @@
+<div class="modal-backdrop" (click)="onClose()"></div>
+<div class="modal-content">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close-button"
+      aria-label="Fechar modal"
+      (click)="onClose()"
+    >
+      &times;
+    </button>
+  </div>
+  <div class="modal-body">
+    <img src="ford.png" alt="Ford Logo" class="ford-logo" />
+    <h1>Bem-vindo(a) ao Sistema Ford</h1>
+    <p>
+      É um prazer tê-lo(a) a bordo. Estamos prontos para te ajudar com todas as
+      suas necessidades automotivas.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-primary" (click)="onClose()">Entendi</button>
+  </div>
+</div>
