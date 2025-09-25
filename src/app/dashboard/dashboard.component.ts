@@ -5,15 +5,15 @@ import { VehicleData } from '../models/vehicleData.model';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CarroVin } from '../utils/carroVinInterface';
-import {  Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { MenuComponent } from "../menu/menu.component";
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [ReactiveFormsModule, CommonModule, MenuComponent],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
   vehicles: Veiculo[] = [];
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  constructor(private dashboardservice: DashboardService) { }
+  constructor(private dashboardservice: DashboardService) {}
 
   ngOnInit(): void {
     this.dashboardservice.getVehicles().subscribe((res) => {
@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit {
     });
     this.selectCarForms.controls.carId.valueChanges.subscribe((id) => {
       this.selectedVehicle = this.vehicles[Number(id) - 1];
+      this.vinForm.controls.vin.setValue(this.selectedVehicle.vin);
     });
     this.onChange();
   }
@@ -57,5 +58,4 @@ export class DashboardComponent implements OnInit {
   // ngOnDestroy(): void {
   //   this.reqVin.unsubscribe();
   // }
-  }
-
+}
