@@ -6,7 +6,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CarroVin } from '../utils/carroVinInterface';
 import { Subscription } from 'rxjs';
-import { RouterLink } from '@angular/router';
 import { MenuComponent } from '../menu/menu.component';
 
 @Component({
@@ -38,7 +37,11 @@ export class DashboardComponent implements OnInit {
         .subscribe((res) => {
           this.carVin = res;
           if (this.carVin && this.carVin.id) {
-            this.selectCarForms.controls.carId.setValue(String(this.carVin.id));
+            this.selectCarForms.controls.carId.setValue(
+              String(this.carVin.id),
+              { emitEvent: false }
+            );
+            this.selectedVehicle = this.vehicles[Number(this.carVin.id) - 1];
           }
         });
     });
@@ -53,14 +56,8 @@ export class DashboardComponent implements OnInit {
     });
     this.selectCarForms.controls.carId.valueChanges.subscribe((id) => {
       this.selectedVehicle = this.vehicles[Number(id) - 1];
-      this.vinForm.controls.vin.setValue(this.selectedVehicle.vin, {
-        emitEvent: false,
-      });
+      this.vinForm.controls.vin.setValue(this.selectedVehicle.vin);
     });
     this.onChange();
   }
-
-  // ngOnDestroy(): void {
-  //   this.reqVin.unsubscribe();
-  // }
 }
