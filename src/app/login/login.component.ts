@@ -52,8 +52,7 @@ export class LoginComponent {
       error: (err) => {
         console.error('Erro no login:', err);
         this.errorMessage = 'Nome de usuário ou senha inválidos.';
-
-        this.senha = '';
+        alert('Erro no login: ' + this.errorMessage);
       },
     });
   }
