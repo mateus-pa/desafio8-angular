@@ -2,25 +2,36 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-menu',
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrl: './menu.component.css',
 })
 export class MenuComponent {
   menuOnClick(): void {
-    const menuBar = document.getElementById("menu-bar");
-    const nav = document.getElementById("nav");
-    const menuBg = document.getElementById("menu-bg");
-  
+    const menuBar = document.getElementById('menu-bar');
+    const nav = document.getElementById('nav');
+    const menuBg = document.getElementById('menu-bg');
+
     if (menuBar && nav && menuBg) {
-      menuBar.classList.toggle("change");
-      nav.classList.toggle("change");
-      menuBg.classList.toggle("change-bg");
+      menuBar.classList.toggle('change');
+      nav.classList.toggle('change');
+      menuBg.classList.toggle('change-bg');
     } else {
-      console.warn("Um ou mais elementos não foram encontrados no DOM.");
+      console.warn('Um ou mais elementos não foram encontrados no DOM.');
     }
+  }
+
+  constructor(private authService: AuthService) {}
+
+  onLogout(): void {
+    this.authService.logout();
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

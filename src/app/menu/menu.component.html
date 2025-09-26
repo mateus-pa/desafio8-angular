@@ -43,6 +43,12 @@
       </div>
     </div>
 
-    <a class="btn btn-outline-danger ms-auto" routerLink="/login">Logout</a>
+    <button
+      class="btn btn-outline-danger ms-auto"
+      (click)="onLogout()"
+      *ngIf="isLoggedIn()"
+    >
+      Logout
+    </button>
   </div>
 </nav>
